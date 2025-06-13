@@ -1,0 +1,6 @@
+# config-repo/studio.yml
+spring:
+  datasource:
+    url: jdbc:mysql://studio-db:3306/studiodb
+    username: root
+    password: root
