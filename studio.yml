@@ -18,11 +18,12 @@ logging:
 
 springdoc:
   api-docs:
-    path: /v3/api-docs          # (chemin par défaut, on le laisse)
+    path: /v3/api-docs
   swagger-ui:
-    path: /swagger-ui.html      # URL finale à appeler
-    use-root-path: true         # IMPORTANT : ressources statiques résolues correctement
+    path: /swagger-ui.html       # URL d’entrée
+    use-root-path: false         # ← désactive la redirection racine
     config-url: /v3/api-docs/swagger-config
+
 
 
 eureka:
