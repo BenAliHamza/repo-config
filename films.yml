@@ -31,3 +31,22 @@
     client:
       service-url:
         defaultZone: http://discovery-server:8761/eureka
+
+
+  resilience4j:
+    circuitbreaker:
+      instances:
+        studioService:
+          slidingWindowSize: 10        # nb de calls dans la fenêtre
+          failureRateThreshold: 50     # % d’échecs avant OPEN
+          waitDurationInOpenState: 10s # combien de temps on reste OPEN
+    retry:
+      instances:
+        studioService:
+          maxAttempts: 3
+          waitDuration: 500ms
+  feign:
+    client:
+      config:
+        default:
+          loggerLevel: basic
