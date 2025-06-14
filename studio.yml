@@ -21,7 +21,9 @@ springdoc:
   swagger-ui:
     path: /swagger-ui.html
     use-root-path: false
-    url: /studio/v3/api-docs            # ← ajoute cette ligne
+    disable-swagger-default-url: true
+    config-url: /studio/v3/api-docs/swagger-config
+
 
 
 eureka:

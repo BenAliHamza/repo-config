@@ -16,7 +16,9 @@ springdoc:
   swagger-ui:
     path: /swagger-ui.html
     use-root-path: false
-    url: /films/v3/api-docs            # ← ajoute cette ligne
+    disable-swagger-default-url: true   # évite Petstore
+    config-url: /films/v3/api-docs/swagger-config   # ← chemin complet via Gateway
+
 
 
 
