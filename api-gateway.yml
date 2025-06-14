@@ -9,16 +9,24 @@ spring:
           enabled: true
           lower-case-service-id: true
       routes:
+        - id: studio-service
+          uri: lb://studio
+          predicates:
+            - Path=/studio/**
+        - id: films-service
+          uri: lb://films
+          predicates:
+            - Path=/films/**
         - id: studio-swagger
           uri: lb://studio
           predicates:
-            - Path=/studio/api-docs,/studio/swagger-ui.html,/studio/swagger-ui/**
+            - Path=/studio/swagger-ui.html,/studio/swagger-ui/**,/studio/api-docs/**,/studio/v3/api-docs/**
           filters:
             - StripPrefix=1
         - id: films-swagger
           uri: lb://films
           predicates:
-            - Path=/films/api-docs,/films/swagger-ui.html,/films/swagger-ui/**
+            - Path=/films/swagger-ui.html,/films/swagger-ui/**,/films/api-docs/**,/films/v3/api-docs/**
           filters:
             - StripPrefix=1
 
