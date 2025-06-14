@@ -27,6 +27,9 @@ eureka:
     service-url:
       defaultZone: http://discovery-server:8761/eureka
 management:
+  endpoint:
+    gateway:
+      enabled: true      # ← OBLIGATOIRE pour exposer /actuator/gateway/**
   endpoints:
     web:
       exposure:
