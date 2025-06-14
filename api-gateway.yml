@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: studio-swagger
+          uri: lb://studio
+          predicates:
+            - Path=/studio/api-docs,/studio/swagger-ui.html,/studio/swagger-ui/**
+          filters:
+            - StripPrefix=1
+        - id: films-swagger
+          uri: lb://films
+          predicates:
+            - Path=/films/api-docs,/films/swagger-ui.html,/films/swagger-ui/**
+          filters:
+            - StripPrefix=1
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery-server:8761/eureka
