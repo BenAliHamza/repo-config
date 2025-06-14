@@ -13,6 +13,7 @@ logging:
 springdoc:
   api-docs:
     path: /v3/api-docs
+    add-server: false        # ← SUPPRIME le bloc "servers"
   swagger-ui:
     path: /swagger-ui.html
     use-root-path: false
