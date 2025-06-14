@@ -11,33 +11,33 @@ spring:
 
       routes:
 
-        # ► ROUTE STUDIO : toute l’API
+        # ► STUDIO – API
         - id: studio-service
           uri: lb://studio
-          predicates:
-            - Path=/studio/**
+          predicates: [ Path=/studio/** ]
+          filters:   [ StripPrefix=1, PreserveHostHeader ]
 
-        # ► ROUTE STUDIO : Swagger (UI + assets + docs)
+        # ► STUDIO – Swagger (UI + assets + docs)
         - id: studio-swagger
           uri: lb://studio
           predicates:
-            - Path=/studio/swagger-ui.html,/studio/swagger-ui/index.html,/studio/swagger-ui/**,/studio/v3/api-docs,/studio/v3/api-docs/**
-          filters:
-            - StripPrefix=1
+            - Path=/studio/swagger-ui.html,/studio/swagger-ui/**,
+              /studio/v3/api-docs,/studio/v3/api-docs/**
+          filters:   [ StripPrefix=1, PreserveHostHeader ]
 
-        # ► ROUTE FILMS : toute l’API
+        # ► FILMS – API
         - id: films-service
           uri: lb://films
-          predicates:
-            - Path=/films/**
+          predicates: [ Path=/films/** ]
+          filters:   [ StripPrefix=1, PreserveHostHeader ]
 
-        # ► ROUTE FILMS : Swagger (UI + assets + docs)
+        # ► FILMS – Swagger (UI + assets + docs)
         - id: films-swagger
           uri: lb://films
           predicates:
-            - Path=/films/swagger-ui.html,/films/swagger-ui/index.html,/films/swagger-ui/**,/films/v3/api-docs,/films/v3/api-docs/**
-          filters:
-            - StripPrefix=1
+            - Path=/films/swagger-ui.html,/films/swagger-ui/**,
+              /films/v3/api-docs,/films/v3/api-docs/**
+          filters:   [ StripPrefix=1, PreserveHostHeader ]
 
 eureka:
   client:
@@ -45,10 +45,5 @@ eureka:
       defaultZone: http://discovery-server:8761/eureka
 
 management:
-  endpoint:
-    gateway:
-      enabled: true          # /actuator/gateway/**
-  endpoints:
-    web:
-      exposure:
-        include: gateway,health,info
+  endpoint.gateway.enabled: true
+  endpoints.web.exposure.include: gateway,health,info
