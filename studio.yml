@@ -7,9 +7,17 @@ spring:
     username: root
     password: root
   jpa:
-    hibernate.ddl-auto: update
+    hibernate:
+      ddl-auto: update
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL8Dialect
+
+  # --- AJOUT KAFKA PRODUCTEUR ---
+  kafka:
+    bootstrap-servers: kafka:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 logging:
   level:
@@ -18,7 +26,7 @@ logging:
 springdoc:
   api-docs:
     path: /v3/api-docs
-    add-server: false        # ← SUPPRIME le bloc "servers"
+    add-server: false
   swagger-ui:
     path: /swagger-ui.html
     use-root-path: false
@@ -27,9 +35,6 @@ springdoc:
     urls:
       - name: studio
         url: /studio/v3/api-docs
-
-
-
 
 eureka:
   client:
