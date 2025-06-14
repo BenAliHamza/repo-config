@@ -21,7 +21,10 @@ springdoc:
     path: /swagger-ui.html
     use-root-path: false
     disable-swagger-default-url: true
-    config-url: /studio/v3/api-docs/swagger-config   # ← PRÉFIXE CORRECT
+    config-url: /studio/v3/api-docs/swagger-config
+    urls:
+      - name: studio
+        url: /studio/v3/api-docs
 
 
 

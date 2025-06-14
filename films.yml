@@ -11,12 +11,16 @@ logging:
     root: info
 
 springdoc:
-  api-docs.path: /v3/api-docs
+  api-docs:
+    path: /v3/api-docs
   swagger-ui:
     path: /swagger-ui.html
-    use-root-path: false            # garde le /films/
+    use-root-path: false
     disable-swagger-default-url: true
-    config-url: /films/v3/api-docs/swagger-config   # ← PRÉFIXE CORRECT
+    config-url: /films/v3/api-docs/swagger-config
+    urls:
+      - name: films                # intitulé affiché dans le menu
+        url: /films/v3/api-docs    # ← spec réelle via Gateway
 
 
 
