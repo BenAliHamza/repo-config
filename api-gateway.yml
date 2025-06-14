@@ -8,37 +8,34 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
+
       routes:
 
-        # ► ROUTE STUDIO (API + SWAGGER)
+        # ► ROUTE STUDIO : toute l’API
         - id: studio-service
           uri: lb://studio
           predicates:
-            - Path=/studio/**           # toutes les API
+            - Path=/studio/**
+
+        # ► ROUTE STUDIO : Swagger (UI + assets + docs)
         - id: studio-swagger
           uri: lb://studio
           predicates:
-            - Path=/studio/swagger-ui.html,
-              /studio/swagger-ui/index.html,
-              /studio/swagger-ui/**,
-              /studio/api-docs/**,
-              /studio/v3/api-docs/**
+            - Path=/studio/swagger-ui.html,/studio/swagger-ui/index.html,/studio/swagger-ui/**,/studio/v3/api-docs,/studio/v3/api-docs/**
           filters:
             - StripPrefix=1
 
-        # ► ROUTE FILMS (API + SWAGGER)
+        # ► ROUTE FILMS : toute l’API
         - id: films-service
           uri: lb://films
           predicates:
             - Path=/films/**
+
+        # ► ROUTE FILMS : Swagger (UI + assets + docs)
         - id: films-swagger
           uri: lb://films
           predicates:
-            - Path=/films/swagger-ui.html,
-              /films/swagger-ui/index.html,
-              /films/swagger-ui/**,
-              /films/api-docs/**,
-              /films/v3/api-docs/**
+            - Path=/films/swagger-ui.html,/films/swagger-ui/index.html,/films/swagger-ui/**,/films/v3/api-docs,/films/v3/api-docs/**
           filters:
             - StripPrefix=1
 
@@ -46,10 +43,11 @@ eureka:
   client:
     service-url:
       defaultZone: http://discovery-server:8761/eureka
+
 management:
   endpoint:
     gateway:
-      enabled: true      # ← OBLIGATOIRE pour exposer /actuator/gateway/**
+      enabled: true          # /actuator/gateway/**
   endpoints:
     web:
       exposure:
