@@ -17,7 +17,7 @@ spring:
         spring:
           json:
             trusted:
-              packages: tn.esprit.common.events
+              packages:  "*"
 
 logging:
   level:
