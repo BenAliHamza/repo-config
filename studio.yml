@@ -18,11 +18,12 @@ logging:
 springdoc:
   api-docs:
     path: /v3/api-docs
+
   swagger-ui:
     path: /swagger-ui.html
     use-root-path: false
-    disable-swagger-default-url: true
-    config-url: /studio/v3/api-docs/swagger-config
+    url: /studio/v3/api-docs
+
 
 
 
